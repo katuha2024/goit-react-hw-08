@@ -1,0 +1,8 @@
+.link{
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+    margin-right: 8px;
+    transition:color 0.3s;
+}
+:activ

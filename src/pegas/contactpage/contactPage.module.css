@@ -1,0 +1,32 @@
+.container {
+    padding: 2rem;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .empty {
+    font-style: italic;
+    color: gray;
+  }
+  
+  .list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .item {
+    margin-bottom: 0.5rem;
+  }
+  
+  .name {
+    font-weight: 600;
+  }
+  
+  .phone {
+    margin-left: 0.5rem;
+  }
+  
