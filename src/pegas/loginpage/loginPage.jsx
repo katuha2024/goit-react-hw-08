@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logInUser } from '../../redux/auth/operations';
-import styles from './LoginPage.module.css';
+import styles from './loginPage.module.css';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
