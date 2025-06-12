@@ -1,4 +1,4 @@
-import css from './homePage.module.css';
+import css from './HomePage.module.css';
 import { Helmet } from 'react-helmet';
 export default function HomePage() {
     return (
