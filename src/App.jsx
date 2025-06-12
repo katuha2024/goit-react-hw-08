@@ -7,7 +7,7 @@ import { refreshUser } from './redux/auth/operations';
 import { selectIsRefreshing } from './redux/auth/selectors';
 
 import Layout from './components/layout/Layout';
-import HomePage from './pegas/homepage/homePage';
+import HomePage from './pegas/homepage/HomePage';
 import RegisterPage from './pegas/regestrationpage/regestrationPage';
 import LoginPage from './pegas/loginpage/loginPage';
 import ContactsPage from './pegas/contactpage/contactPage';
