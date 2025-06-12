@@ -1,29 +1,50 @@
-import styles from './Contactlist.module.css';
-import Contact from '../contact/Contact';
-import { useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contacts/operations';
+import ConfirmModal from '../Modal/ConfirmModal';
+import { toast } from 'react-hot-toast';
 
-export default function ContactList() {
-  const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.filters.name);
+export default function ContactList({ contacts }) {
+  const dispatch = useDispatch();
+  const [selectedContact, setSelectedContact] = useState(null);
 
-  
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const handleDelete = id => {
+    setSelectedContact(id);
+  };
+
+  const confirmDelete = () => {
+    dispatch(deleteContact(selectedContact))
+      .unwrap()
+      .then(() => {
+        toast.success('Contact deleted');
+        setSelectedContact(null);
+      })
+      .catch(() => {
+        toast.error('Failed to delete contact');
+        setSelectedContact(null);
+      });
+  };
+
+  const cancelDelete = () => {
+    setSelectedContact(null);
+  };
 
   return (
-    <div className={styles.container}>
-      {filteredContacts.length === 0 ? (
-        <p>Dear Mentor, no such contact found, try again! )))</p>
-      ) : (
-        <ul className={styles.contactList}>
-          {filteredContacts.map(({ id, name, number }) => (
-            <li key={id} className={styles.listItem}>
-              <Contact id={id} name={name} number={number} />
-            </li>
-          ))}
-        </ul>
+    <ul>
+      {contacts.map(contact => (
+        <li key={contact.id}>
+          {contact.name}: {contact.number}
+          <button onClick={() => handleDelete(contact.id)}>Delete</button>
+        </li>
+      ))}
+
+      {selectedContact && (
+        <ConfirmModal
+          message="Are you sure you want to delete this contact?"
+          onConfirm={confirmDelete}
+          onCancel={cancelDelete}
+        />
       )}
-    </div>
+    </ul>
   );
 }

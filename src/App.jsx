@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -13,6 +14,8 @@ import ContactsPage from './pegas/contactpage/contactPage';
 
 import PrivateRoute from './components/privateroute/privateRoute';
 import RestrictedRoute from './components/restrictedroute/restrictedRoute';
+import { toast } from 'react-hot-toast';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +24,10 @@ function App() {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    toast.success('Toast is working!');
+  }, []);
 
   return isRefreshing ? (
     <p>Refreshing user...</p>
@@ -31,19 +38,19 @@ function App() {
         <Route
           path="register"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<RegisterPage />} />
+            <RestrictedRoute redirectTo="/contacts" element={<RegisterPage />} />
           }
         />
         <Route
           path="login"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+            <RestrictedRoute redirectTo="/contacts" element={<LoginPage />} />
           }
         />
         <Route
           path="contacts"
           element={
-            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            <PrivateRoute redirectTo="/login" element={<ContactsPage />} />
           }
         />
       </Route>

@@ -4,6 +4,7 @@ import { useId } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from 'yup';
 import { addContact } from "../../redux/contacts/operations"; 
+import { toast } from 'react-hot-toast';
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -22,23 +23,33 @@ export default function ContactForm() {
       .required("Required"),
   });
 
-  const handleSubmit = async (values, actions) => {
+  const handleSubmit = (values, actions) => {
     const newContact = {
       name: values.contactName,
       number: values.contactPhone,
     };
-  
-    try {
-      await dispatch(addContact(newContact)); 
-      actions.resetForm(); 
-    } catch (error) {
-      console.error("Помилка при додаванні контакту:", error);
-    }
+
+    dispatch(addContact(newContact))
+      .then(res => {
+        if (res.error) {
+          toast.error('Failed to add contact');
+        } else {
+          toast.success('Contact added successfully');
+          actions.resetForm();
+        }
+      })
+      .catch(() => {
+        toast.error('Something went wrong');
+      });
   };
 
   return (
     <div className={styles.container}>
-      <Formik initialValues={{ contactName: "", contactPhone: "" }} onSubmit={handleSubmit} validationSchema={FeedbackSchema}>
+      <Formik
+        initialValues={{ contactName: "", contactPhone: "" }}
+        onSubmit={handleSubmit}
+        validationSchema={FeedbackSchema}
+      >
         <Form className={styles.formContainer}>
           <label className={styles.Contactlabel} htmlFor={nameFieldId}>Name</label>
           <Field className={styles.contactInput} type="text" name="contactName" id={nameFieldId} />

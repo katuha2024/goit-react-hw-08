@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logIn } from './redux/audth/operations';
+import { logInUser } from '../../redux/auth/operations';
+import styles from './LoginPage.module.css';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -9,36 +10,38 @@ export default function LoginPage() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(logIn({ email, password }));
+    dispatch(logInUser({ email, password }));
     setEmail('');
     setPassword('');
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Вхід</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className={styles.container}>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <label className={styles.label}>
           Email:
           <input
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
+            className={styles.input}
           />
         </label>
-        <br />
-        <label>
-          Пароль:
+
+        <label className={styles.label}>
+          Password:
           <input
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
+            className={styles.input}
           />
         </label>
-        <br />
-        <button type="submit">Увійти</button>
+
+        <button type="submit" className={styles.button}>Let's go</button>
       </form>
     </div>
   );

@@ -8,7 +8,7 @@ export default function HomePage() {
 </Helmet>
         <div className={css.container}>
           <h1 className={css.title}>
-            Task manager welcome page{' '}
+            You are wellcome it`s your phone book{' '}
             <span role="img" aria-label="Greeting icon">
               💁‍♀️
             </span>
