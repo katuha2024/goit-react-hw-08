@@ -7,10 +7,10 @@ import { refreshUser } from './redux/auth/operations';
 import { selectIsRefreshing } from './redux/auth/selectors';
 
 import Layout from './components/layout/Layout';
-import HomePage from './pegas/homepage/HomePage';
-import RegisterPage from './pegas/regestrationpage/regestrationPage';
-import LoginPage from './pegas/loginpage/loginPage';
-import ContactsPage from './pegas/contactpage/contactPage';
+import HomePage from './pages/homepage/HomePage';
+import RegisterPage from './pages/regestrationpage/regestrationPage';
+import LoginPage from './pages/loginpage/loginPage';
+import ContactsPage from './pages/contactpage/contactPage';
 
 import PrivateRoute from './components/privateroute/privateRoute';
 import RestrictedRoute from './components/restrictedroute/restrictedRoute';
