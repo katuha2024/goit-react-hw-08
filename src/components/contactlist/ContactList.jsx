@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contacts/operations';
-import ConfirmModal from '../Modal/ConfirmModal';
+import ConfirmModal from '../modal/ConfirmModal';
 import { toast } from 'react-hot-toast';
 
 export default function ContactList({ contacts }) {
